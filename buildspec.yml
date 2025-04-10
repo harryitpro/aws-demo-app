@@ -1,0 +1,11 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - echo Building the application...
+      - mvn clean package
+artifacts:
+  files:
+    - target/aws-demo-app-1.0-SNAPSHOT.jar
+    - appspec.yml
+    - scripts/*
