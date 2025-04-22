@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/demo")
-public class AwsDemoController {
+public class SimpleController {
 
     @GetMapping
     public ResponseEntity<String> greet() {
-        return ResponseEntity.ok("Welcome to AWS Demo Application!");
+        return ResponseEntity.ok("Welcome to Simple Demo Application!");
     }
 }
