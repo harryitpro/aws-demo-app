@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: spring-boot-app-NodePort
+  name: spring-boot-app-nodeport
   labels:
     app: spring-boot-app
 spec:
@@ -10,6 +10,6 @@ spec:
     app: spring-boot-app
   ports:
     - name: http
-      port: 80 # Port exposed inside the cluster (optional for NodePort access)
+      port: 80 # Port exposed inside the cluster
       targetPort: 8080 # Port on the Pod
       nodePort: 30036    # Static port exposed on each node (range: 30000-32767)

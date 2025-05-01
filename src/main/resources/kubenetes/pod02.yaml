@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: spring-boot-app-pod01
+  name: spring-boot-app-pod02
   labels:
     app: spring-boot-app
 spec:
