@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spring-boot-app-pod01
+  labels:
+    app: spring-boot-app
+spec:
+  containers:
+    - image: harryitpro/springbootapp
+      name: spring-boot-app-container
+      ports:
+        - containerPort: 8080
+      resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
