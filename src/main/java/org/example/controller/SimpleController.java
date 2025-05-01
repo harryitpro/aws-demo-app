@@ -11,6 +11,6 @@ public class SimpleController {
 
     @GetMapping
     public ResponseEntity<String> greet() {
-        return ResponseEntity.ok("Welcome to Simple Demo Application!");
+        return ResponseEntity.ok(System.getenv("HOSTNAME") + ": Welcome to Simple Demo Application!");
     }
 }
