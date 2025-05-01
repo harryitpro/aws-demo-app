@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spring-boot-app-pod03
+  labels:
+    app: spring-boot-app
+spec:
+  nodeName: multipass01
+  containers:
+    - image: harryitpro/springbootapp
+      name: spring-boot-app-container
+      ports:
+        - containerPort: 8080
+      resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
