@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: springboot-service-lb
   labels:
-    app: springboot-app
+    app: springbootapp
 spec:
   type: LoadBalancer
   ports:
@@ -11,4 +11,4 @@ spec:
       port: 80        # Port exposed by the LoadBalancer
       targetPort: 8080  # The port the pods are listening on
   selector:
-    app: spring-boot-app
+    app: springbootapp
