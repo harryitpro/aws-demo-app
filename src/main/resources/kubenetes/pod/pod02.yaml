@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: spring-boot-app-pod03
+  name: springbootapp-pod02
   labels:
-    app: spring-boot-app
+    app: springbootapp
 spec:
-  nodeName: multipass01
+  nodeName: vm2
   containers:
     - image: harryitpro/springbootapp
-      name: spring-boot-app-container
+      name: springbootapp-container
       ports:
         - containerPort: 8080
       resources: {}

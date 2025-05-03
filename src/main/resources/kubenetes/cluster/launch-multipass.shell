@@ -1,0 +1,12 @@
+multipass launch --name vm1 --cpus 1 --memory 4G --disk 10G --network en0
+multipass launch --name vm2 --cpus 1 --memory 2G --disk 10G --network en0
+
+# install k3s on VM1
+multipass shell vm1
+curl -sfL <https://get.k3s.io> | sh -
+
+#get token from control-plane:
+sudo cat /var/lib/rancher/k3s/server/node-token
+
+multipass shell vm2
+curl -sfL https://get.k3s.io | K3S_URL=https://192.168.64.27:6443 K3S_TOKEN=K1004b6123559c5cb08686bc63f1c19e1c11076eed122aa89e89175308827e1ebb3::server:6d6d64856af189fd2d0424480284b2e8 sh -
