@@ -11,6 +11,7 @@ public class DemoController {
 
     @GetMapping
     public ResponseEntity<String> greet() {
-        return ResponseEntity.ok(System.getenv("HOSTNAME") + ": Welcome to Simple Demo Application!");
+        String hostName = System.getenv().getOrDefault("HOSTNAME", "UNKNOWN");
+        return ResponseEntity.ok(hostName + ": Welcome to Simple Demo Application!");
     }
 }
