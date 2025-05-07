@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springbootapp-deployment
+spec:
+  selector:
+    matchLabels:
+      app: springbootapp
+    template:
+      matadata:
+        labels:
+          app: springbootapp
+      spec:
+        containers:
+          - name: springbootapp
+            image: ghcr.io/harryitpro/spring-boot-app:latest
+            ports:
+              - containerPort: 8080
+            env:
+              - name: SPRING_PROFILES_ACTIVE
+                value: "dev"
