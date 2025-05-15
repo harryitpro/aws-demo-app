@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/demo")
 public class DemoController {
-
     @GetMapping
     public ResponseEntity<String> greet() {
         String hostName = System.getenv().getOrDefault("HOSTNAME", "UNKNOWN");

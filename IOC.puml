@@ -1,0 +1,178 @@
+@startuml
+
+' Define interfaces from Spring Core
+interface BeanFactory {
+    +getBean(name: String): Object
+    +getBean(name: String, requiredType: Class): Object
+    +containsBean(name: String): boolean
+    ' ... other methods ...
+}
+
+interface ApplicationContext extends BeanFactory {
+    +getMessage(code: String, args: Object[], locale: Locale): String
+    +publishEvent(event: ApplicationEvent): void
+    +getResource(location: String): Resource
+    ' ... other methods ...
+}
+
+' Define a Resource interface (part of Spring Core) - simplified
+interface Resource {
+    +getInputStream(): InputStream
+    +exists(): boolean
+    +getDescription(): String
+    ' ...
+}
+
+' Define ApplicationEvent (part of Spring Core) - simplified
+class ApplicationEvent {
+    -source: Object
+    +getSource(): Object
+    +getTimestamp(): long
+    ' ...
+}
+
+' Define concrete ApplicationContext implementations (simplified)
+class ClassPathXmlApplicationContext implements ApplicationContext {
+    +ClassPathXmlApplicationContext(configLocations: String[])
+    ' ...
+}
+
+class FileSystemXmlApplicationContext implements ApplicationContext{
+   +FileSystemXmlApplicationContext(configLocations: String[])
+}
+class AnnotationConfigApplicationContext implements ApplicationContext {
+    +AnnotationConfigApplicationContext(annotatedClasses: Class...)
+     +AnnotationConfigApplicationContext()
+    +register(annotatedClasses: Class...)
+    +refresh():void
+    '...
+}
+
+' Define ServletContext (from the Servlet API, not Spring)
+class ServletContext {
+    ' ...
+}
+
+' Spring MVC related interfaces and classes
+interface WebApplicationContext extends ApplicationContext {
+    +getServletContext(): ServletContext
+    ' ...
+}
+
+class XmlWebApplicationContext implements WebApplicationContext {
+   '...
+}
+class AnnotationConfigWebApplicationContext implements WebApplicationContext{
+  '...
+}
+
+class DispatcherServlet extends HttpServlet {
+    -webApplicationContext: WebApplicationContext
+    +doDispatch(request: HttpServletRequest, response: HttpServletResponse): void
+    ' ... other methods ...
+}
+
+interface HandlerMapping {
+    +getHandler(request: HttpServletRequest): HandlerExecutionChain
+    ' ...
+}
+
+class SimpleUrlHandlerMapping implements HandlerMapping{
+  '...
+}
+
+class BeanNameUrlHandlerMapping implements HandlerMapping {
+  '...
+}
+class HandlerExecutionChain{
+  -handler: Object
+  +applyPreHandle(request: HttpServletRequest, response: HttpServletResponse):boolean
+  +applyPostHandle(request: HttpServletRequest, response: HttpServletResponse, modelAndView: ModelAndView):void
+  +triggerAfterCompletion(request: HttpServletRequest, response: HttpServletResponse, ex: Exception):void
+}
+
+interface HandlerAdapter {
+    +handle(request: HttpServletRequest, response: HttpServletResponse, handler: Object): ModelAndView
+    +supports(handler: Object): boolean
+    ' ...
+}
+
+class SimpleControllerHandlerAdapter implements HandlerAdapter{
+  '...
+}
+class HttpRequestHandlerAdapter implements HandlerAdapter{
+  '...
+}
+class ServletControllerHandlerAdapter implements HandlerAdapter{
+  '...
+}
+
+interface Controller {
+    +handleRequest(request: HttpServletRequest, response: HttpServletResponse): ModelAndView
+}
+
+class MyController implements Controller {
+    +handleRequest(request: HttpServletRequest, response: HttpServletResponse): ModelAndView
+    ' ...
+}
+
+class ModelAndView {
+    -viewName: String
+    -model: Map
+    +setViewName(viewName: String): void
+    +addObject(attributeName: String, attributeValue: Object): void
+    ' ... other methods ...
+}
+
+interface View {
+    +render(model: Map, request: HttpServletRequest, response: HttpServletResponse): void
+    ' ...
+}
+
+class InternalResourceView implements View {
+    +render(model: Map, request: HttpServletRequest, response: HttpServletResponse): void
+     -url: String
+    '...
+}
+
+class JstlView implements View {
+  +render(model: Map, request: HttpServletRequest, response: HttpServletResponse): void
+  '...
+}
+' Relationship declarations
+
+' Core Container relationships
+ApplicationContext <|-- ClassPathXmlApplicationContext
+ApplicationContext <|-- FileSystemXmlApplicationContext
+ApplicationContext <|-- AnnotationConfigApplicationContext
+ApplicationContext <|-- WebApplicationContext
+WebApplicationContext <|-- XmlWebApplicationContext
+WebApplicationContext <|-- AnnotationConfigWebApplicationContext
+
+ApplicationContext <|-- BeanFactory
+ApplicationContext o-- Resource
+ApplicationContext o-- ApplicationEvent
+
+' MVC relationships
+DispatcherServlet o-- WebApplicationContext
+DispatcherServlet o-- HandlerMapping
+DispatcherServlet o-- HandlerAdapter
+HandlerMapping <|-- SimpleUrlHandlerMapping
+HandlerMapping <|-- BeanNameUrlHandlerMapping
+HandlerAdapter <|-- SimpleControllerHandlerAdapter
+HandlerAdapter <|-- HttpRequestHandlerAdapter
+HandlerAdapter <|-- ServletControllerHandlerAdapter
+
+HandlerExecutionChain o-- HandlerAdapter
+HandlerExecutionChain o-- Object : handler 'Object is the generic type for a handler
+Controller <|.. MyController
+MyController --> ModelAndView
+ModelAndView --> View
+View <|-- InternalResourceView
+View <|-- JstlView
+
+' Dependency relationships (simplified)
+DispatcherServlet --> HttpServletRequest
+DispatcherServlet --> HttpServletResponse
+
+@enduml
