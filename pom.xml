@@ -88,6 +88,13 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.12</version> <!-- Use the latest version -->
+                <configuration>
+                    <excludes>
+                        <exclude>com/demo/api/**/*</exclude>
+                        <exclude>com/demo/model/**/*</exclude>
+                        <exclude>com/demo/invoker/**/*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <!-- Prepare JaCoCo agent for test execution -->
                     <execution>
