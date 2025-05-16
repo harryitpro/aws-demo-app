@@ -1,0 +1,23 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - description: Generated server url
+    url: http://localhost:8081
+paths:
+  /demo:
+    get:
+      description: Returns a greeting message including the hostname of the server
+      operationId: greet
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: Successful response with hostname and welcome message
+      summary: Retrieve a welcome message
+      tags:
+        - demo-controller
+components: {}
