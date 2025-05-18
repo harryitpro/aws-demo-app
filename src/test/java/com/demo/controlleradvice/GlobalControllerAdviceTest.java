@@ -71,20 +71,6 @@ class GlobalControllerAdviceTest {
         assertNotNull(errorResponse.getTimestamp());
     }
 
-    // Test ModelAttribute for version
-    @Test
-    void testAddVersion() {
-        String version = controllerAdvice.addVersion();
-        assertEquals("1.0.0", version);
-    }
-
-    // Test InitBinder for disallowing 'id' field
-    @Test
-    void testInitBinder() {
-        controllerAdvice.initBinder(binder);
-        verify(binder).setDisallowedFields("id");
-    }
-
     // Test ErrorResponse class
     @Test
     void testErrorResponse() {

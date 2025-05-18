@@ -53,26 +53,4 @@ public class GlobalControllerAdvice {
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-    // Global model attribute
-
-    /**
-     * Adds a version attribute to all models.
-     */
-    @ModelAttribute("version")
-    public String addVersion() {
-        logger.debug("Adding model attribute 'version' with value 1.0.0");
-        return "1.0.0";
-    }
-
-    // Global data binding
-
-    /**
-     * Prevents binding to fields named id in request parameters.
-     */
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        logger.debug("Initializing WebDataBinder with disallowed field 'id'");
-        binder.setDisallowedFields("id"); // Prevent binding to 'id' field
-    }
 }

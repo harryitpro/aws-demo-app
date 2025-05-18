@@ -7,11 +7,40 @@ pipeline {
     }
 
     stages {
+    pipeline {
+        agent any
+        stages {
+            stage('Checkout') {
+                steps {
+                    git 'https://your-git-repo-url.git'
+                }
+            }
+            stage('Build') {
+                steps {
+                    sh 'mvn clean package'
+                }
+            }
+            stage('Build Docker Image') {
+                steps {
+                    sh 'docker build -t springboot-app:latest .'
+                }
+            }
+            stage('Deploy') {
+                steps {
+                    sh 'docker-compose -f docker-compose.yml up -d --build springboot-app'
+                }
+            }
+        }
+
+
+        stage('Checkout') {
+            steps {
+                // Get source from a GitHub repository
+                git branch: 'main', url: 'https://github.com/harryitpro/springbootapp.git'
+            }
+        }
         stage('Build') {
             steps {
-                // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/harryitpro/springbootapp.git'
-
                 // Run Maven on a Unix agent.
                 withMaven(maven: 'M3') {
                     sh "mvn -Dmaven.test.failure.ignore=true clean package"
@@ -28,5 +57,17 @@ pipeline {
                 }
             }
         }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t springboot-app:latest .'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'docker-compose -f docker-compose.yml up -d --build springboot-app'
+            }
+        }
+
     }
 }
