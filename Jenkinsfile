@@ -13,11 +13,26 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/harryitpro/springbootapp.git'
             }
         }
-        stage('Build') {
+        stage('Clean') {
+            steps {
+                sh 'mvn clean'
+            }
+        }
+        stage('Compile') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Package') {
             steps {
                 // Run Maven on a Unix agent.
                 withMaven(maven: 'M3') {
-                    sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                    sh "mvn package"
                 }
             }
             post {
