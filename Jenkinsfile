@@ -6,7 +6,6 @@ pipeline {
         maven "M3"
     }
 
-    stages {
     pipeline {
         agent any
         stages {
@@ -57,7 +56,6 @@ pipeline {
                 }
             }
         }
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t springboot-app:latest .'

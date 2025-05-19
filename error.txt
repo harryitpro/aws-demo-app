@@ -1,0 +1,13 @@
+Restarting prometheus ... error
+
+ERROR: for prometheus
+Cannot restart container ff53e32b033782e19ddebbdbc17b2bc6d5670b1b98615c34024cec2e5a9f9f9a:
+failed to create task for container:
+failed to create shim task:
+OCI runtime create failed:
+runc create failed:
+unable to start container process:
+error during container init:
+error mounting "/home/ubuntu/workspace/prometheus.yml"
+to rootfs at "/etc/prometheus/prometheus.yaml":
+mount /home/ubuntu/workspace/prometheus.yml:/etc/prometheus/prometheus.yaml (via /proc/self/fd/6), flags: 0x5000: not a directory: unknown: Are you trying to mount a directory onto a file (or vice-versa)? Check if the specified host path exists and is the expected type

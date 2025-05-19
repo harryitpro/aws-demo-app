@@ -29,17 +29,6 @@ services:
       - grafana_data:/var/lib/grafana
     networks:
       - app-network
-  springboot-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: springboot-app
-    ports:
-      - "8081:8081"
-    networks:
-      - app-network
-    depends_on:
-      - prometheus
 networks:
   app-network:
     driver: bridge
