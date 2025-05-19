@@ -6,32 +6,7 @@ pipeline {
         maven "M3"
     }
 
-    pipeline {
-        agent any
-        stages {
-            stage('Checkout') {
-                steps {
-                    git 'https://your-git-repo-url.git'
-                }
-            }
-            stage('Build') {
-                steps {
-                    sh 'mvn clean package'
-                }
-            }
-            stage('Build Docker Image') {
-                steps {
-                    sh 'docker build -t springboot-app:latest .'
-                }
-            }
-            stage('Deploy') {
-                steps {
-                    sh 'docker-compose -f docker-compose.yml up -d --build springboot-app'
-                }
-            }
-        }
-
-
+    stages{
         stage('Checkout') {
             steps {
                 // Get source from a GitHub repository
@@ -66,6 +41,5 @@ pipeline {
                 sh 'docker-compose -f docker-compose.yml up -d --build springboot-app'
             }
         }
-
     }
 }
