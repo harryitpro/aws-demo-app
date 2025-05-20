@@ -46,15 +46,15 @@ pipeline {
                 }
             }
         }
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t springboot-app:latest .'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'docker-compose -f docker-compose.yml up -d --build springboot-app'
-            }
-        }
+//         stage('Build Docker Image') {
+//             steps {
+//                 sh 'docker build -t springboot-app:latest .'
+//             }
+//         }
+//         stage('Deploy') {
+//             steps {
+//                 sh 'docker-compose -f docker-compose.yml up -d --build springboot-app'
+//             }
+//         }
     }
 }
