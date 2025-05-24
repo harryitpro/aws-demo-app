@@ -1,4 +1,4 @@
-package com.demo.controller;
+package com.springpoc.webmvc.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,8 @@ import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(DemoController.class)
-class DemoControllerTest {
+@WebMvcTest(WelcomeController.class)
+class WelcomeControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

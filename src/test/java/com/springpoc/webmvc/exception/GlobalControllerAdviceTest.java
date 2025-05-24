@@ -1,4 +1,4 @@
-package com.demo.controlleradvice;
+package com.springpoc.webmvc.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;

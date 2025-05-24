@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.demo</groupId>
-    <artifactId>springbootapp</artifactId>
+    <groupId>com.myapp</groupId>
+    <artifactId>welcome</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -25,14 +25,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-prometheus</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-actuator</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.micrometer</groupId>-->
+<!--            <artifactId>micrometer-registry-prometheus</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -43,6 +43,11 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.32</version>
         </dependency>
 
     </dependencies>
@@ -66,9 +71,9 @@
                         <configuration>
                             <inputSpec>${project.basedir}/src/main/resources/openapi/demo-api.yaml</inputSpec>
                             <generatorName>spring</generatorName>
-                            <apiPackage>com.demo.api</apiPackage>
-                            <modelPackage>com.demo.model</modelPackage>
-                            <invokerPackage>com.demo.invoker</invokerPackage>
+                            <apiPackage>com.myapp.api</apiPackage>
+                            <modelPackage>com.myapp.model</modelPackage>
+                            <invokerPackage>com.myapp.invoker</invokerPackage>
                             <configOptions>
                                 <java8>true</java8>
                                 <useJakartaEe>true</useJakartaEe>
@@ -90,9 +95,9 @@
                 <version>0.8.12</version> <!-- Use the latest version -->
                 <configuration>
                     <excludes>
-                        <exclude>com/demo/api/**/*</exclude>
-                        <exclude>com/demo/model/**/*</exclude>
-                        <exclude>com/demo/invoker/**/*</exclude>
+                        <exclude>com/myapp/welcome/api/**/*</exclude>
+                        <exclude>com/myapp/welcome/model/**/*</exclude>
+                        <exclude>com/myapp/welcome/invoker/**/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
